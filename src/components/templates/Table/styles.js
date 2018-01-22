@@ -2,6 +2,9 @@
 // Table Styles
 
 export default {
+  container: {
+    paddingBottom: 24, 
+  },
   tableHeader: {
     width: '100%',
     height: 32,
@@ -11,7 +14,6 @@ export default {
     gridTemplateColumns: 'repeat(7, 1fr)',
     gridColumnGap: '3%',
     alignItems: 'end',
-
   },
   emptyRows: {
     width: '100%',

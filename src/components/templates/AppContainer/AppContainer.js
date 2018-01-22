@@ -26,7 +26,8 @@ class AppContainer extends Component {
       loading: false,
       drivers: [],
       rentals: [],
-      vehicles: []
+      vehicles: [],
+      filteredRentals: []
     });
     this.fetchData = this.fetchData.bind(this);
   }
@@ -61,6 +62,8 @@ class AppContainer extends Component {
       value: e.target.value,
     });
   }
+
+
 
   render () {
     const { modalOpen, drivers, rentals, vehicles, loading } = this.state;

@@ -19,7 +19,12 @@ class Table extends Component {
         </div>
       )
     }
-    const rows = rentals.map((rental, i) => {
+
+    const sorted = rentals.sort((a,b) => {
+      return Date.parse(b.start_date) - Date.parse(a.start_date)
+    })
+
+    const rows = sorted.map((rental, i) => {
       return (
         <Row
           key={i}
@@ -33,6 +38,8 @@ class Table extends Component {
         />
       )
     });
+
+
     return rows;
   }
 
