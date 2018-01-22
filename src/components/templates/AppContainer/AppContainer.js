@@ -8,7 +8,7 @@ import styles from './styles';
 const AppContainer = () => (
   <div style={styles.container}>
     <div style={styles.content}>
-      Your code
+      
     </div>
   </div>
 );
