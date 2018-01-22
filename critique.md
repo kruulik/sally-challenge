@@ -1,10 +1,11 @@
 # Critique
 
-## Overall impressions
+## Overall Impressions
 
 It appears the style here is inspired by Google's Material Design. As such, I used their guidelines as a frame of reference for my critique.
 
 The UI in general is simple and open, with clearly labeled sections and content. Despite this, it is somewhat hard to follow, as the layout lacks a "flow". This can be alleviated with tighter and more purposeful margins and paddings around text, as well as reserved use of icons in the section headers to further delineate content type, and serve as a point of reference for the eye.
+
 An example of some of the proposed changes, discussed below, can be found [here](assets/Observation_v2.png). Design files can be found [here](assets/sally.sketch).
 
 ## Layout
@@ -29,3 +30,6 @@ Thin, sans-serif fonts are aesthetically pleasing and always a great go-to, howe
 ## Naming
 
 Finally, and this is a very serious matter... I propose the demo user name be changed to ["Driver McDriveyFace"](https://www.nytimes.com/2016/03/22/world/europe/boaty-mcboatface-what-you-get-when-you-let-the-internet-decide.html).
+
+
+![Sketch Mockup](assets/Observation_v2.png)
