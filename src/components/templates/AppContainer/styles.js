@@ -14,4 +14,10 @@ export default {
     borderRadius: '6px',
     margin: 'auto',
   },
+  appHeader: {
+    background: '#7c7c7c',
+    height: 72,
+    width: '100%',
+    color: 'white'
+  }
 };

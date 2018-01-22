@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import Radium from 'radium';
 
 // Components
+import {Loading} from '../Loading';
+import {Header} from '../Header';
 import {Table} from '../Table';
 import {Modal} from '../Modal';
 import {Search} from '../Search';
@@ -21,14 +23,19 @@ class AppContainer extends Component {
     super(props);
     this.state = ({
       modalOpen: false,
+      loading: false,
       drivers: [],
       rentals: [],
       vehicles: []
     });
+    this.fetchData = this.fetchData.bind(this);
   }
 
-  async fetchData() {
-    let d, r, v
+  async fetchData () {
+    let d, r, v;
+    this.setState({
+      loading: true,
+    })
     try {
       d = await drivers();
       r = await rentals();
@@ -36,27 +43,36 @@ class AppContainer extends Component {
     } catch (e) {
       console.log('whoops');
     }
-    this.setState = ({
-      drivers: d,
-      rentals: r,
-      vehicles: v,
+    return {d, r, v};
+  }
+
+  async componentDidMount () {
+    const data = await this.fetchData();
+    this.setState({
+      drivers: data.d,
+      rentals: data.r,
+      vehicles: data.v,
+      loading: false,
     });
   }
 
-  componentDidMount () {
-    this.fetchData();
+  search = e => {
+    this.setState({
+      value: e.target.value,
+    });
   }
 
-
   render () {
-    const { modalOpen, drivers, rentals, vehicles } = this.state;
+    const { modalOpen, drivers, rentals, vehicles, loading } = this.state;
 
     return (
       <div style={styles.container}>
         <div style={styles.content}>
+          { loading ? <Loading /> : null }
           { modalOpen ? <Modal /> : null }
-          <Search />
-          <Table />
+          <Header title={"Rentals"} count={rentals.length} />
+          <Search handleSearch={this.search} />
+          <Table rentals={rentals} drivers={drivers} vehicles={vehicles} />
         </div>
       </div>
     )
