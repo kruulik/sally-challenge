@@ -3,13 +3,12 @@ import React, { Component } from 'react';
 import Radium from 'radium';
 
 // Components
-import {Table} from '../Table'
 
 // Component styles
 import styles from './styles';
 
 
-class AppContainer extends Component {
+class Table extends Component {
   constructor (props) {
     super(props);
     this.state = ({
@@ -23,7 +22,7 @@ class AppContainer extends Component {
     return (
       <div style={styles.container}>
         <div style={styles.content}>
-          <Table />
+          Im a table
         </div>
       </div>
     )
@@ -31,4 +30,4 @@ class AppContainer extends Component {
 
 };
 
-export default Radium(AppContainer);
+export default Radium(Table);
