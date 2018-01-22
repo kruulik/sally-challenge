@@ -1,3 +1,6 @@
+
+// AppContainer styles
+
 export default {
   container: {
     width: '100%',
