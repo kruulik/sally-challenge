@@ -35,6 +35,8 @@ class Table extends Component {
           start={rental.start_date}
           end={rental.end_date}
           rate={rental.rate}
+          rowClick={this.props.rowClick}
+          item={rental}
         />
       )
     });

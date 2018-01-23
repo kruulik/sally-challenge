@@ -23,6 +23,7 @@ class AppContainer extends Component {
     super(props);
     this.state = ({
       modalOpen: false,
+      selected: null,
       loading: false,
       drivers: [],
       vehicles: [],
@@ -30,6 +31,7 @@ class AppContainer extends Component {
       filteredRentals: []
     });
     this.fetchData = this.fetchData.bind(this);
+    this.handleRowClick = this.handleRowClick.bind(this);
   }
 
   async fetchData () {
@@ -73,22 +75,46 @@ class AppContainer extends Component {
     });
   }
 
+  handleRowClick (e) {
+    this.setState({
+      modalOpen: true,
+      selected: e,
+    })
+  }
 
+  closeModal = (e) => {
+    this.setState({
+      modalOpen: false,
+      selected: null,
+    })
+  }
+
+  updateRental = () => {
+    debugger
+  }
 
   render () {
-    const { modalOpen, drivers, allRentals, vehicles, loading, filteredRentals, searchValue } = this.state;
+    const { modalOpen, drivers, allRentals, vehicles, loading, filteredRentals, searchValue, selected } = this.state;
 
     return (
       <div style={styles.container}>
         <div style={styles.content}>
           { loading ? <Loading /> : null }
-          { modalOpen ? <Modal /> : null }
+          { modalOpen ? <Modal
+            selected={selected}
+            drivers={drivers}
+            vehicles={vehicles}
+            close={this.closeModal}
+            updateRental={this.updateRental} />
+          : null
+          }
           <Header title={"Rentals"} count={allRentals.length} />
           <Search handleSearch={this.search} />
           <Table
             rentals={searchValue ? filteredRentals : allRentals}
             drivers={drivers}
             vehicles={vehicles}
+            rowClick={this.handleRowClick}
           />
         </div>
       </div>

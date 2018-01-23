@@ -18,12 +18,6 @@ class Search extends Component {
     });
   }
 
-  // handleChange = e => {
-  //   this.setState({
-  //     value: e.target.value,
-  //   });
-  // };
-
   render () {
     return (
       <div style={styles.container}>

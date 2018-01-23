@@ -26,7 +26,7 @@ export default {
     overflow: 'hidden',
     alignSelf: 'center',
     reserved: {
-      fontSize: 'red'
+      color: 'red'
     },
     active: {
       color: 'orange'

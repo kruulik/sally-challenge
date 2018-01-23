@@ -11,9 +11,9 @@ import styles from './styles';
 class Row extends Component {
 
   render () {
-    const { status, vehicle, driver, email, start, end, rate } = this.props;
+    const { status, vehicle, driver, email, start, end, rate, rowClick, item } = this.props;
     return (
-      <div style={styles.container}>
+      <div style={styles.container} onClick={rowClick.bind(this, item)}>
         <div
           style={{...styles.cell, ...styles.cell[status], gridColumnStart: 1}}>
           {status}
