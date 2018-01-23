@@ -25,8 +25,8 @@ class AppContainer extends Component {
       modalOpen: false,
       loading: false,
       drivers: [],
-      rentals: [],
       vehicles: [],
+      allRentals: [],
       filteredRentals: []
     });
     this.fetchData = this.fetchData.bind(this);
@@ -51,31 +51,45 @@ class AppContainer extends Component {
     const data = await this.fetchData();
     this.setState({
       drivers: data.d,
-      rentals: data.r,
+      allRentals: data.r,
       vehicles: data.v,
       loading: false,
     });
   }
 
   search = e => {
+    const { allRentals, vehicles, drivers, filteredRentals } = this.state;
+    const filtered = allRentals.filter(rental => {
+      if (
+        vehicles[rental.vehicle - 1].brand.includes(e.target.value) || drivers[rental.driver - 1].first_name.includes(e.target.value) || drivers[rental.driver - 1].last_name.includes(e.target.value) || drivers[rental.driver - 1].email.includes(e.target.value)
+      ) {
+          return rental;
+        }
+    })
+
     this.setState({
-      value: e.target.value,
+      filteredRentals: filtered,
+      searchValue: e.target.value,
     });
   }
 
 
 
   render () {
-    const { modalOpen, drivers, rentals, vehicles, loading } = this.state;
+    const { modalOpen, drivers, allRentals, vehicles, loading, filteredRentals, searchValue } = this.state;
 
     return (
       <div style={styles.container}>
         <div style={styles.content}>
           { loading ? <Loading /> : null }
           { modalOpen ? <Modal /> : null }
-          <Header title={"Rentals"} count={rentals.length} />
+          <Header title={"Rentals"} count={allRentals.length} />
           <Search handleSearch={this.search} />
-          <Table rentals={rentals} drivers={drivers} vehicles={vehicles} />
+          <Table
+            rentals={searchValue ? filteredRentals : allRentals}
+            drivers={drivers}
+            vehicles={vehicles}
+          />
         </div>
       </div>
     )
