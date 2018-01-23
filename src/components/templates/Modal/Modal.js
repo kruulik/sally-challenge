@@ -18,17 +18,40 @@ class Modal extends Component {
   constructor (props) {
     super(props);
     this.state = ({
-
+      form: {
+        item: this.props.selected,
+        start_date: null,
+        end_date: null,
+        status: null,
+        rate: null,
+        first_name: null,
+        last_name: null,
+        start_date: null,
+      }
     });
   }
 
-  componentDidMount(){
-
+  date = (date) => {
+    if (date) {
+      let dt = new Date(date)
+      return `${dt.getDate()}.${dt.getMonth()}.${dt.getFullYear()} ${dt.getHours()}:${dt.getMinutes()}`
+    } else {
+      return null
+    }
   }
+
+  handleChange = name => event => {
+     this.setState({
+       form: {
+         ...this.state.form,
+         [name]: event.target.value
+       },
+     });
+   };
 
   render () {
     const { close, selected, vehicles, drivers, updateRental, deleteRental } = this.props;
-// debugger
+    const { form } = this.state;
     return (
       <div style={styles.container} >
         <div style={styles.modal} >
@@ -48,29 +71,29 @@ class Modal extends Component {
               style={{gridColumnStart: 2, width: '100%'}}
               id="start"
               floatingLabelText="Start Date"
-              onChange={this.props.handleSearch}
-              value={selected.start_date}
+              onChange={this.handleChange('start_date')}
+              defaultValue={this.date(selected.start_date)}
             />
             <TextField
               style={{gridColumnStart: 4, width: '100%'}}
               id="end"
               floatingLabelText="End Date"
-              onChange={this.props.handleSearch}
-              value={selected.end_date || ''}
+              onChange={this.handleChange('end_date')}
+              defaultValue={this.date(selected.end_date) || ''}
             />
             <TextField
               style={{gridColumnStart: 2, width: '100%'}}
               id="rate"
               floatingLabelText="Rate"
-              onChange={this.props.handleSearch}
-              value={selected.rate}
+              onChange={this.handleChange('rate')}
+              defaultValue={selected.rate}
             />
             <SelectField
               style={{gridColumnStart: 4, width: '100%'}}
               floatingLabelText="Status"
               id="status"
-              value={selected.status}
-              onChange={this.handleChange}
+              defaultValue={selected.status}
+              onChange={this.handleChange('status')}
             >
               <MenuItem value={'reserved'} primaryText="Reserved" />
               <MenuItem value={'active'} primaryText="Active" />
@@ -82,38 +105,45 @@ class Modal extends Component {
               style={{gridColumnStart: 2, gridColumnEnd: 5, width: '100%'}}
               id="vehicle"
               floatingLabelText="Vehicle"
-              onChange={this.props.handleSearch}
-              value={vehicles.find(v => v.id === selected.vehicle).brand}
+              onChange={this.handleChange('vehicle')}
+              defaultValue={vehicles.find(v => v.id === selected.vehicle).brand}
             />
             {/* <div style={styles.divider}></div> */}
             <TextField
               style={{gridColumnStart: 2, width: '100%'}}
               id="first_name"
               floatingLabelText="First Name"
-              onChange={this.props.handleSearch}
-              value={drivers.find(d => d.id === selected.driver).first_name}
+              onChange={this.handleChange('first_name')}
+              defaultValue={drivers.find(d => d.id === selected.driver).first_name}
             />
             <TextField
               style={{gridColumnStart: 4, width: '100%'}}
               id="last_name"
               floatingLabelText="Last Name"
-              onChange={this.props.handleSearch}
-              value={drivers.find(d => d.id === selected.driver).last_name}
+              onChange={this.handleChange('last_name')}
+              defaultValue={drivers.find(d => d.id === selected.driver).last_name}
             />
             <TextField
               style={{gridColumnStart: 2, gridColumnEnd: 5, width: '100%'}}
               id="email"
               required="true"
               floatingLabelText="Email"
-              onChange={this.props.handleSearch}
-              value={drivers.find(d => d.id === selected.driver).email}
+              onChange={this.handleChange('email')}
+              defaultValue={drivers.find(d => d.id === selected.driver).email}
             />
-            <br />
-            <br />
+
             <div style={styles.buttonRow}>
-              <FlatButton label="Delete" onClick={deleteRental}/>
-              <FlatButton label="Save" primary={true} onClick={updateRental}/>
+              <FlatButton
+                label="Delete"
+                onClick={() => deleteRental(form)}
+              />
+              <FlatButton
+                label="Save"
+                primary={true}
+                onClick={() => updateRental(form)}
+              />
             </div>
+
           </div>
         </div>
       </div>

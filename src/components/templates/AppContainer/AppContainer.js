@@ -1,6 +1,8 @@
 // Modules
 import React, { Component } from 'react';
 import Radium from 'radium';
+import merge from 'lodash/merge';
+
 
 // Components
 import {Loading} from '../Loading';
@@ -32,6 +34,7 @@ class AppContainer extends Component {
     });
     this.fetchData = this.fetchData.bind(this);
     this.handleRowClick = this.handleRowClick.bind(this);
+    this.updateRental = this.updateRental.bind(this);
   }
 
   async fetchData () {
@@ -86,15 +89,41 @@ class AppContainer extends Component {
     this.setState({
       modalOpen: false,
       selected: null,
+    });
+  }
+
+  updateRental = (form) => {
+    // redux would come in handy here...
+    const { drivers, vehicles, allRentals } = this.state;
+    const driver = drivers.find(d => d.id === form.item.driver);
+    const vehicle = vehicles.find(v => v.id === form.item.vehicle);
+    let rental = allRentals.find(r => r.id === form.item.id);
+    rental = merge(rental, {
+      start_date: form.start_date || form.item.start_date,
+      end_date: form.end_date || form.item.end_date,
+      rate: form.rate || form.item.rate,
+      email: driver.email || form.item.email,
+      driver: driver.id,
+      vehicle: vehicle.id
     })
+    this.setState({
+      allRentals
+    })
+
+    this.closeModal
   }
 
-  updateRental = () => {
-    debugger
-  }
+  deleteRental = (form) => {
 
-  deleteRental = () => {
+    const { allRentals } = this.state;
+
+    let rental = allRentals.find(r => r.id === form.item.id);
     debugger
+    rental = null;
+    this.setState({
+      allRentals
+    })
+    this.closeModal
   }
 
   render () {

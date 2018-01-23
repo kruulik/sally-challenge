@@ -10,6 +10,15 @@ import styles from './styles';
 
 class Row extends Component {
 
+  date = (date) => {
+    if (date) {
+      let dt = new Date(date)
+      return `${dt.getDate()}.${dt.getMonth()}.${dt.getFullYear()} ${dt.getHours()}:${dt.getMinutes()}`
+    } else {
+      return null
+    }
+  }
+
   render () {
     const { status, vehicle, driver, email, start, end, rate, rowClick, item } = this.props;
     return (
@@ -32,11 +41,11 @@ class Row extends Component {
         </div>
         <div
           style={{...styles.cell, gridColumnStart: 5}}>
-          {start || '–'}
+          {this.date(start) || '–'}
         </div>
         <div
           style={{...styles.cell, gridColumnStart: 6}}>
-          {end || '–'}
+          {this.date(end) || '–'}
         </div>
         <div
           style={{...styles.cell, gridColumnStart: 7}}>

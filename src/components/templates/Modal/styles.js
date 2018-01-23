@@ -16,7 +16,6 @@ export default {
   },
   modal: {
     zIndex: 999,
-    // height: 500,
     width: 465,
     background: 'white',
     borderRadius: 3,
@@ -24,7 +23,6 @@ export default {
   },
   content: {
     width: '100%',
-    // height: '100%',
     display: 'grid',
     gridTemplateColumns: '16px auto 5% auto 16px',
   },
