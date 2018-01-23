@@ -33,4 +33,4 @@ Finally, and this is a very serious matter... I propose the demo user name be ch
 
 
 <!-- ![Sketch Mockup](assets/Observation_v2.png | width=200) -->
-<img src="https://github.com/assets/Observation_v2.png" width="200">
+<img src="https://github.com/kruulik/sally-challenge/raw/master/assets/Observation_v2.png" width="200">
