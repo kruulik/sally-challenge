@@ -32,5 +32,4 @@ Thin, sans-serif fonts are aesthetically pleasing and always a great go-to, howe
 Finally, and this is a very serious matter... I propose the demo user name be changed to ["Driver McDriveyFace"](https://www.nytimes.com/2016/03/22/world/europe/boaty-mcboatface-what-you-get-when-you-let-the-internet-decide.html).
 
 
-<!-- ![Sketch Mockup](assets/Observation_v2.png | width=200) -->
-<img src="https://github.com/kruulik/sally-challenge/raw/master/assets/Observation_v2.png" width="200">
+![Sketch Mockup](assets/Observation_v2.png)
