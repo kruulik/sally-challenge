@@ -101,6 +101,7 @@ class AppContainer extends Component {
     rental = merge(rental, {
       start_date: form.start_date || form.item.start_date,
       end_date: form.end_date || form.item.end_date,
+      status: form.status || form.item.status,
       rate: form.rate || form.item.rate,
       email: form.email || form.item.email,
       driver: driver.id,

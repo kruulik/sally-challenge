@@ -49,6 +49,11 @@ class Modal extends Component {
      });
    };
 
+   handleSelectChange = (event, index, value) => this.setState({form: {
+     ...this.state.form,
+     status: value
+   }});
+
   render () {
     const { close, selected, vehicles, drivers, updateRental, deleteRental } = this.props;
     const { form } = this.state;
@@ -92,8 +97,8 @@ class Modal extends Component {
               style={{gridColumnStart: 4, width: '100%'}}
               floatingLabelText="Status"
               id="status"
-              defaultValue={selected.status}
-              onChange={this.handleChange('status')}
+              value={selected.status}
+              onChange={this.handleSelectChange}
             >
               <MenuItem value={'reserved'} primaryText="Reserved" />
               <MenuItem value={'active'} primaryText="Active" />
