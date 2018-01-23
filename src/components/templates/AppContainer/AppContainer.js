@@ -106,7 +106,6 @@ class AppContainer extends Component {
       driver: driver.id,
       vehicle: vehicle.id
     });
-    debugger
     this.setState({
       allRentals,
       modalOpen: false,
