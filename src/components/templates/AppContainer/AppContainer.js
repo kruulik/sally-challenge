@@ -102,12 +102,15 @@ class AppContainer extends Component {
       start_date: form.start_date || form.item.start_date,
       end_date: form.end_date || form.item.end_date,
       rate: form.rate || form.item.rate,
-      email: driver.email || form.item.email,
+      email: form.email || form.item.email,
       driver: driver.id,
       vehicle: vehicle.id
-    })
+    });
+    debugger
     this.setState({
-      allRentals
+      allRentals,
+      modalOpen: false,
+      selected: null,
     })
 
     this.closeModal
@@ -115,15 +118,15 @@ class AppContainer extends Component {
 
   deleteRental = (form) => {
 
-    const { allRentals } = this.state;
-
-    let rental = allRentals.find(r => r.id === form.item.id);
-    debugger
-    rental = null;
+    let { allRentals } = this.state;
+    allRentals = Object.values(allRentals).filter(del => {
+      return del.id !== form.item.id
+    });
     this.setState({
-      allRentals
+      allRentals,
+      modalOpen: false,
+      selected: null,
     })
-    this.closeModal
   }
 
   render () {

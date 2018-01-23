@@ -26,16 +26,16 @@ export default {
     overflow: 'hidden',
     alignSelf: 'center',
     reserved: {
-      color: 'red'
+      color: '#A81526'
     },
     active: {
-      color: 'orange'
+      color: '#FF3600'
     },
     returned: {
-      color: 'violet'
+      color: '#A87BD9'
     },
     archived: {
-      color: 'gray'
+      color: '#4C4C4C'
     }
   }
 

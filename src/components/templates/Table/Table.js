@@ -19,7 +19,6 @@ class Table extends Component {
         </div>
       )
     }
-debugger
     const sorted = rentals.sort((a,b) => {
       return Date.parse(b.start_date) - Date.parse(a.start_date)
     })

@@ -34,16 +34,16 @@ export default {
     alignItems: 'center',
     padding: '0 16px',
     reserved: {
-      background: 'red'
+      background: '#A81526'
     },
     active: {
-      background: 'orange'
+      background: '#FF3600'
     },
     returned: {
-      background: 'violet'
+      background: '#A87BD9'
     },
     archived: {
-      background: 'gray'
+      background: '#4C4C4C'
     }
   },
   h2: {
