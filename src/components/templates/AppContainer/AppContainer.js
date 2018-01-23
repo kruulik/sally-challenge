@@ -93,6 +93,10 @@ class AppContainer extends Component {
     debugger
   }
 
+  deleteRental = () => {
+    debugger
+  }
+
   render () {
     const { modalOpen, drivers, allRentals, vehicles, loading, filteredRentals, searchValue, selected } = this.state;
 
@@ -105,7 +109,8 @@ class AppContainer extends Component {
             drivers={drivers}
             vehicles={vehicles}
             close={this.closeModal}
-            updateRental={this.updateRental} />
+            updateRental={this.updateRental}
+            deleteRental={this.deleteRental}/>
           : null
           }
           <Header title={"Rentals"} count={allRentals.length} />
